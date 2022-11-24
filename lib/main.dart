@@ -15,7 +15,7 @@ class Home extends StatefulWidget{
 }
 
 class _HomeState extends State<Home>{
-  String _info = "Informe seus dados.";
+  String _info = "PRESTAÇÃO APARTAMENTO";
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   
   TextEditingController valorController = TextEditingController();
@@ -23,7 +23,7 @@ class _HomeState extends State<Home>{
   void _resetFields(){
     valorController.text = ''; contaController.text = '';
     setState((){
-      _info = "Colocar informações";
+      _info = "PRESTAÇÃO APARTAMENTO";
       _formKey = GlobalKey<FormState>();
     });
   }
@@ -33,23 +33,34 @@ class _HomeState extends State<Home>{
      double valor = double.parse(valorController.text);
     int conta = int.parse(contaController.text);
      double descontoValor;
+      double ano = 0;
+
+  
+
+     while(valor <=5000) {
+     
+      (valor = valor * 2);
+
+       ano++;
+      
+     }
 
     switch (conta) {
       case 1:
-        descontoValor = valor;
-        _info = 'Cliente comum não tem desconto, Valor novo a pagar: ($descontoValor)';
+        descontoValor = ano;
+        _info = 'O VALOR DA PARCELA PASSARÁ A SER MAIOR QUE 5000 REAIS EM : ($descontoValor) ANOS';
         break;
         case 2:
-        descontoValor = valor - valor*10/100;
-        _info = 'Funcionário tem 10% de desconto, Valor novo a pagar: ($descontoValor)';
+        descontoValor = ano;
+        _info = 'O VALOR DA PARCELA PASSARÁ A SER MAIOR QUE 5000 REAIS EM : ($descontoValor) ANOS';
         break;
         case 3:
-        descontoValor = valor - valor*5/100;
-        _info = 'Cliente VIP tem 5% de desconto, Valor novo a pagar: ($descontoValor)';
+        descontoValor = ano;
+        _info = 'O VALOR DA PARCELA PASSARÁ A SER MAIOR QUE 5000 REAIS EM : ($descontoValor) ANOS';
         break;
       default:
-        descontoValor = valor;
-        _info = 'Valor inválido,  Valor: ($descontoValor)';
+        descontoValor = ano;
+        _info = 'O VALOR DA PARCELA PASSARÁ A SER MAIOR QUE 5000 REAIS EM : ($descontoValor) ANOS';
     }
 
     print(descontoValor);
@@ -60,14 +71,14 @@ class _HomeState extends State<Home>{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Calcular desconto"),
+        title: const Text("CALCULAR JUROS PRESTAÇÃO"),
         centerTitle : true,
-        backgroundColor: Colors.cyan,
+        backgroundColor: Color.fromARGB(255, 54, 25, 216),
         actions:<Widget>[
           IconButton(icon: const Icon(Icons.account_box), onPressed: _resetFields)
         ],
       ),
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromARGB(255, 74, 13, 185),
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(10,0,10,0),
         child: Form(
@@ -77,14 +88,14 @@ class _HomeState extends State<Home>{
             children: <Widget>[
               const Icon(Icons.person_outline, 
               size: 120.0, 
-              color: Colors.cyan),
+              color: Color.fromARGB(255, 92, 40, 189)),
             TextFormField(
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
-                labelText: "Valor total da Compra: ",
-                labelStyle: TextStyle(color: Colors.cyan)),
+                labelText: "VALOR PRESTAÇÃO: ",
+                labelStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255))),
                 textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.cyan, fontSize: 25.0),
+                style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontSize: 25.0),
                 controller: valorController,
                 validator:(value){
                   if(value!.isEmpty){
@@ -96,10 +107,10 @@ class _HomeState extends State<Home>{
             TextFormField(
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
-                labelText: "Digite 1 para Cliente, Digita 2 para Funcionário, Digite 3 para Cliente Vip",
-                labelStyle: TextStyle(color: Colors.cyan)),
+                labelText: "DIGITE O NÚMERO DA PARCELA",
+                labelStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255))),
                 textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.cyan, fontSize: 25.0),
+                style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontSize: 25.0),
                 controller: contaController,
                 validator:(value){
                   if(value!.isEmpty){
@@ -118,7 +129,7 @@ class _HomeState extends State<Home>{
                       _desconto();
                     }
                   },
-                  color:Colors.cyan,
+                  color:Color.fromARGB(255, 64, 11, 189),
                   child: const Text(
                     'Calcular desconto',
                     style: TextStyle(color: Colors.white, fontSize:25.0),
@@ -130,7 +141,7 @@ class _HomeState extends State<Home>{
               Text(
                 _info,
                 textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.cyan, fontSize: 25),
+                style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255), fontSize: 25),
                 )
 
             ],
@@ -141,102 +152,3 @@ class _HomeState extends State<Home>{
   }
 
 }
-
-// import 'dart:ffi';
-// import 'dart:math';
-
-// import 'package:flutter/material.dart';
-
-// void main() async {
-//   runApp(MaterialApp(
-//     home: const Home(),
-//     theme: ThemeData(
-//       hintColor: Colors.grey,
-//       primaryColor: Colors.lightBlue,
-//       inputDecorationTheme: const InputDecorationTheme(
-//             enabledBorder:
-//                 OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-//             focusedBorder:
-//                 OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-//             hintStyle: TextStyle(color: Colors.white))),
-//     ));
-  
-// }
-
-// class Home extends StatefulWidget {
-//   const Home({Key? key}) : super(key: key);
-
-//   @override 
-//   State<Home> createState() => _HomeState();
-// }
-
-// class _HomeState extends State<Home> {
-//   final valorController = TextEditingController();
-//   final comumController = TextEditingController();
-//   final funcionarioController = TextEditingController();
-//   final vipController = TextEditingController();
-
-//   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  
-//   late Float comum;
-//   late Float funcionario;
-//   late Float vip; 
-   
-  
-
-//   @override
-//   Widget build(BuildContext) {
-//     return Scaffold(
-//       backgroundColor: Colors.white,
-//       appBar: AppBar(
-//         title: const Text("Saiba o Valor Total a Pagar"),
-//         backgroundColor: Colors.cyan[700],
-//         centerTitle: true,
-//       ),
-//     body: SingleChildScrollView(
-//      padding: const EdgeInsets.all(10),
-//      child: Form(
-//       key: _formKey,
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.stretch,
-//         children: [ 
-//           const Icon(
-//             Icons.date_range,
-//             size: 150,
-//             color: Color.fromARGB(255, 7, 55, 138),
-//           ),
-//           construirTextField("Valor Total", "Valor Total: ", valorController, "Campo vazio"),
-//           const Divider(),
-//           construirTextField("Valor a pagar cliente comum", "Valor a pagar:", comumController, "Campo vazio"),
-//           const Divider(),
-//           construirTextField("Valor a pagar funcionário", "Valor a pagar:", funcionarioController, "Campo vazio"),
-//           const Divider(),
-//           construirTextField("Valor a pagar cliente vip", "Valor a pagar:", vipController, "Campo vazio"),
-//         ]
-//       )
-//      ),
-//     ),
-//     );
-
-//   }
-//   Widget construirTextField(String texto, String prefixo, TextEditingController c, String mensagemErro) {
-//   return TextFormField(
-//     validator: (value) {
-//       if (value!.isEmpty) {
-//         return mensagemErro;
-//       } else {
-//         return null;
-//       }
-//     },
-//     controller: c,
-//     decoration: InputDecoration(
-//       labelText: texto,
-//       labelStyle: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-//       border: const OutlineInputBorder(),
-//       prefixText: prefixo),
-//       style: const TextStyle(
-//         color: Colors.black,
-//       ));
-//   }
-
-// }
